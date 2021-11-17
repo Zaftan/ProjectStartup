@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599922444699161028}
   - component: {fileID: 1727838393492931047}
+  - component: {fileID: -6893757557236408746}
   m_Layer: 0
   m_Name: Potion 3
   m_TagString: Untagged
@@ -82,3 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6893757557236408746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5195152121489631500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07d24362ba4f734ba7baa3b98374c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionName: Yellow Potion
+  ingredients:
+  - {fileID: 7338150731936727439, guid: 2b8b22540a76ad247a9652ef331556be, type: 3}
+  - {fileID: 3082965583213877975, guid: 4d213df4822c8664a9c558edfa03b701, type: 3}
+  sellPrice: 0

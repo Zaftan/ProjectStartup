@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3112344561280582316}
   - component: {fileID: 9049005422550235432}
+  - component: {fileID: -4815411774760323011}
   m_Layer: 0
   m_Name: Potion 2
   m_TagString: Untagged
@@ -82,3 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-4815411774760323011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7587927944527043818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c07d24362ba4f734ba7baa3b98374c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  potionName: Purple Potion
+  ingredients:
+  - {fileID: 3389561011589069382, guid: 587a444f7187cc1429fb984e3ea71906, type: 3}
+  - {fileID: 3082965583213877975, guid: 4d213df4822c8664a9c558edfa03b701, type: 3}
+  sellPrice: 0
