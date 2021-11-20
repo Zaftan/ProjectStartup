@@ -7,20 +7,23 @@ public class BrewButtonBehaviour : MonoBehaviour
     [SerializeField] CauldronBehaviour cauldron;
     public void OnButtonPressed()
     {
-        if (compareLists(cauldron.ingredients, cauldron.purplePotion.GetComponent<Potion>().ingredients))
+        if (compareLists(cauldron.ingredients, cauldron.potionSO["HealthPotion"].ingredients))
         {
             cauldron.ingredients.Clear();
-            Instantiate(cauldron.purplePotion, cauldron.potionPosition);
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["HealthPotion"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
-        else if (compareLists(cauldron.ingredients, cauldron.cyanPotion.GetComponent<Potion>().ingredients))
+        else if (compareLists(cauldron.ingredients, cauldron.potionSO["ShieldPotion"].ingredients))
         {
             cauldron.ingredients.Clear();
-            Instantiate(cauldron.cyanPotion, cauldron.potionPosition);
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ShieldPotion"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
-        else if (compareLists(cauldron.ingredients, cauldron.cyanPotion.GetComponent<Potion>().ingredients))
+        else if (compareLists(cauldron.ingredients, cauldron.potionSO["ManaPotion"].ingredients))
         {
             cauldron.ingredients.Clear();
-            Instantiate(cauldron.yellowPotion, cauldron.potionPosition);
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ManaPotion"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
         else
         {
@@ -29,9 +32,12 @@ public class BrewButtonBehaviour : MonoBehaviour
         }
     }
 
-    private bool compareLists(List<GameObject> inCauldron, List<GameObject> inPotion)
+    private bool compareLists(List<GameObject> tempInCauldron, List<GameObject> tempInPotion)
     {
-        if(inCauldron.Count != inPotion.Count) return false;
+        List<GameObject> inCauldron = new List<GameObject>(tempInCauldron);
+        List<GameObject> inPotion = new List<GameObject>(tempInPotion);
+
+        if (inCauldron.Count != inPotion.Count) return false;
         
         
         for (int i = inCauldron.Count - 1; i >= 0; i--)
