@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5195152121489631500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5782887, y: -1.0316106, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88a646db383de814aa206c313176ef54, type: 3}
   m_Color: {r: 0.9622642, g: 0.9354855, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionName: Yellow Potion
+  potionSprite: {fileID: 21300000, guid: 28232a2fcc62ee64481d1cccac87bd11, type: 3}
   ingredients:
-  - {fileID: 7338150731936727439, guid: 2b8b22540a76ad247a9652ef331556be, type: 3}
   - {fileID: 3082965583213877975, guid: 4d213df4822c8664a9c558edfa03b701, type: 3}
+  - {fileID: 7338150731936727439, guid: 2b8b22540a76ad247a9652ef331556be, type: 3}
   sellPrice: 0

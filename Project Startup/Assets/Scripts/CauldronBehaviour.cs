@@ -9,11 +9,14 @@ public class CauldronBehaviour : MonoBehaviour
     public GameObject blue;
 
     public List<GameObject> ingredients;
-    //public Dictionary<string, GameObject> potions;
 
-    public GameObject purplePotion;
-    public GameObject yellowPotion;
-    public GameObject cyanPotion;
+    [Header("Totaly a dictionary what are you talking about")]
+    [SerializeField] List<string> potionNames;
+    [SerializeField] List<PotionSO> potionList;
+
+    public Dictionary<string, PotionSO> potionSO = new Dictionary<string, PotionSO>();
+
+    public GameObject potionPrefab;
 
     public Transform potionPosition;
     
@@ -23,35 +26,17 @@ public class CauldronBehaviour : MonoBehaviour
 
     private void Start()
     {
-       /* potions["Purple"] = purplePotion;
-        potions["Yellow"] = yellowPotion;
-        potions["Cyan"] = cyanPotion;*/
+        for (int i = 0; i < potionList.Count; i++)
+        {
+            potionSO.Add(potionNames[i], potionList[i]);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    Vector3 settingUpPositions(Transform position)
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Cauldron colliding with " + collision.gameObject.name);
-        if(Input.GetMouseButtonUp(0) && collision.gameObject == red)
-        {
-            ingredients.Add(red);
-            Destroy(collision.gameObject);
-        }
-        if (Input.GetMouseButtonUp(0) && collision.gameObject == blue)
-        {
-            ingredients.Add(red);
-            Destroy(collision.gameObject);
-        }
-        if (Input.GetMouseButtonUp(0) && collision.gameObject == green)
-        {
-            ingredients.Add(red);
-            Destroy(collision.gameObject);
-        }
+        Vector3 pos = position.transform.position;
+        pos.z = -5;
+        return pos;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -59,17 +44,18 @@ public class CauldronBehaviour : MonoBehaviour
         if (collision.gameObject.name == red.name && Input.GetMouseButton(0) == false)
         {
             ingredients.Add(red);
-            collision.gameObject.transform.position = redPosition.position;
+            
+            collision.gameObject.transform.position = settingUpPositions(redPosition);
         }
         if (collision.gameObject.name == blue.name && Input.GetMouseButton(0) == false)
         {
             ingredients.Add(blue);
-            collision.gameObject.transform.position = bluePosition.position;
+            collision.gameObject.transform.position = settingUpPositions(bluePosition);
         }
         if (collision.gameObject.name == green.name && Input.GetMouseButton(0) == false)
         {
             ingredients.Add(green);
-            collision.gameObject.transform.position = greenPosition.position;
+            collision.gameObject.transform.position = settingUpPositions(greenPosition);
         }
     }
 }

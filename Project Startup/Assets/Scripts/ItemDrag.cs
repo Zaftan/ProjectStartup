@@ -5,10 +5,12 @@ using UnityEngine;
 public class ItemDrag : MonoBehaviour
 {
     bool dragging;
+    public bool hasPickedUp = false;
 
     private void OnMouseDown()
     {
         dragging = true;
+        hasPickedUp = true;
     }
 
     private void OnMouseUp()
