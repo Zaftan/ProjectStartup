@@ -6,8 +6,12 @@ using UnityEngine;
 public class Customer : ScriptableObject
 {
     public Sprite customerSprite;
+    public Sprite customerSpriteHappy;
+    public Sprite customerSpriteAngry;
     public Sprite potionSprite;
     public Transform orderParent;
 
     public GameObject potion;
+
+    public Vector3 spriteOffset;
 }

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a445f2d41d9a4e41ae29b053aaedbac, type: 3}
   m_Name: Werewolf
   m_EditorClassIdentifier: 
-  customerSprite: {fileID: 21300000, guid: c9ebb7e28eabc0f41b353c5054b7b86e, type: 3}
+  customerSprite: {fileID: 21300000, guid: 17d7458717f2610458867ee3c54e1153, type: 3}
+  customerSpriteHappy: {fileID: 21300000, guid: 090701b58be6b0b4db3f4cfb077aa8b2, type: 3}
+  customerSpriteAngry: {fileID: 21300000, guid: 3461079db12a6d64faffbdbfe0179e64, type: 3}
   potionSprite: {fileID: 21300000, guid: e83bb02ec6ee637448ac22d374817246, type: 3}
-  potion: {fileID: 0}
+  orderParent: {fileID: 0}
+  potion: {fileID: 8818683448814282836, guid: 09627c95e00f0ae4b82b5555740f316b, type: 3}
+  spriteOffset: {x: 0, y: 0.21, z: 0}

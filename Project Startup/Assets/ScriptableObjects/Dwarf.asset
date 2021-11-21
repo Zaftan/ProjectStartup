@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a445f2d41d9a4e41ae29b053aaedbac, type: 3}
-  m_Name: OrcLady
+  m_Name: Dwarf
   m_EditorClassIdentifier: 
-  customerSprite: {fileID: 21300000, guid: 8237ea68d683ca24f948915963954861, type: 3}
-  customerSpriteHappy: {fileID: 21300000, guid: cdc1a6f5fd70c6a4b93fd79d48771990, type: 3}
-  customerSpriteAngry: {fileID: 21300000, guid: b4201e9daa7076f44916cb27dd77bd95, type: 3}
-  potionSprite: {fileID: 21300000, guid: 28232a2fcc62ee64481d1cccac87bd11, type: 3}
+  customerSprite: {fileID: 21300000, guid: 1eea5eef432d01c40a3d2ee045fe7153, type: 3}
+  customerSpriteHappy: {fileID: 21300000, guid: 25cab0e8ec099eb48afdbaa968d06035, type: 3}
+  customerSpriteAngry: {fileID: 21300000, guid: 9cdc8ea0b8ff85a47b09f7be8634eb0c, type: 3}
+  potionSprite: {fileID: 0}
   orderParent: {fileID: 0}
   potion: {fileID: 8818683448814282836, guid: 09627c95e00f0ae4b82b5555740f316b, type: 3}
-  spriteOffset: {x: 0, y: 0, z: 0}
+  spriteOffset: {x: 0, y: -0.08, z: 0}

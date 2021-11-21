@@ -28,7 +28,14 @@ public class CauldronBehaviour : MonoBehaviour
         for (int i = 0; i < potionList.Count; i++)
         {
             potionSO.Add(potionNames[i], potionList[i]);
-        }   
+        }
+    }
+
+    Vector3 settingUpPositions(Transform position)
+    {
+        Vector3 pos = position.transform.position;
+        pos.z = -5;
+        return pos;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -36,17 +43,18 @@ public class CauldronBehaviour : MonoBehaviour
         if (collision.gameObject.name == red.name && Input.GetMouseButton(0) == false)
         {
             ingredients.Add(red);
-            collision.gameObject.transform.position = redPosition.position;
+            
+            collision.gameObject.transform.position = settingUpPositions(redPosition);
         }
         if (collision.gameObject.name == blue.name && Input.GetMouseButton(0) == false)
         {
             ingredients.Add(blue);
-            collision.gameObject.transform.position = bluePosition.position;
+            collision.gameObject.transform.position = settingUpPositions(bluePosition);
         }
         if (collision.gameObject.name == green.name && Input.GetMouseButton(0) == false)
         {
             ingredients.Add(green);
-            collision.gameObject.transform.position = greenPosition.position;
+            collision.gameObject.transform.position = settingUpPositions(greenPosition);
         }
     }
 }

@@ -48,7 +48,7 @@ public class BrewButtonBehaviour : MonoBehaviour
                 {
                     inCauldron.Remove(inCauldron[i]);
                     inPotion.Remove(inPotion[j]);
-                    //break;
+                    j = inPotion.Count;
                 }
             }
         }

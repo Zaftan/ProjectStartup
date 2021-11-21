@@ -5,8 +5,8 @@ using UnityEngine;
 public class CustomerSpawnBehaviour : MonoBehaviour
 {
     public List<Customer> customersOutside;
-    public int customersInShop;
-    public List<GameObject> potions;
+    public List<PotionSO> potions;
+    public GameObject potionPrefab;
 
     public List<Transform> customerParents;
 
@@ -16,11 +16,17 @@ public class CustomerSpawnBehaviour : MonoBehaviour
 
     public int randomNumberForSpawn;
 
+    [SerializeField] List<Transform> openPosition = new List<Transform>();
+
     bool once;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (openPosition.Count < 3)
+        {
+            checkPositions();
+        }
         settingUpCustomer();
         StartCoroutine(spawnTimer());
     }
@@ -28,8 +34,27 @@ public class CustomerSpawnBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
+        if (openPosition.Count < 3)
+        {
+            checkPositions();
+        }
+    }
+
+    void checkPositions()
+    {
+        if(customerParents[0].childCount < 1 && !openPosition.Contains(customerParents[0]))
+        {
+            openPosition.Add(customerParents[0]);
+        }
+        if (customerParents[1].childCount < 1 && !openPosition.Contains(customerParents[1]))
+        {
+            openPosition.Add(customerParents[1]);
+        }
+        if (customerParents[2].childCount < 1 && !openPosition.Contains(customerParents[2]))
+        {
+            openPosition.Add(customerParents[2]);
+        }
     }
 
     private void settingUpCustomer()
@@ -37,13 +62,19 @@ public class CustomerSpawnBehaviour : MonoBehaviour
         if (!once)
         {
             Debug.Log("calling customer in");
+
+            //Get random numbers
             int randomCustomer = Random.Range(0, customersOutside.Count);
             int randomPotion = Random.Range(0, potions.Count);
-            customerPrefab.GetComponent<CustomerDisplay>().potionPrefab = potions[randomPotion];
+
+            //Set variables for the customer
+            customerPrefab.GetComponent<CustomerDisplay>().potionPrefab = potionPrefab;
+            customerPrefab.GetComponent<CustomerDisplay>().potionSO = potions[randomPotion];
             customerPrefab.GetComponent<CustomerDisplay>().customer = customersOutside[randomCustomer];
-            //customerPrefab.GetComponent<CustomerDisplay>().potionSprite = potions[randomPotion].GetComponent<SpriteRenderer>();
-            Instantiate(customerPrefab, customerParents[customersInShop]);
-            customersInShop++;
+
+            //Instantiate customer and remove from open position list;
+            Instantiate(customerPrefab, openPosition[0]);
+            openPosition.Remove(openPosition[0]);
         }
     }
 
@@ -51,7 +82,7 @@ public class CustomerSpawnBehaviour : MonoBehaviour
     {
         randomNumberForSpawn = Random.Range(0, 101);
         yield return new WaitForSeconds(Random.Range(2, 6));
-        if (customersInShop != 3 && randomNumberForSpawn > 50)
+        if (openPosition.Count != 0 && randomNumberForSpawn > 50)
         {
             settingUpCustomer();
         }
