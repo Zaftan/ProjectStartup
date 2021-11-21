@@ -53,8 +53,6 @@ public class BrewButtonBehaviour : MonoBehaviour
             }
         }
 
-        Debug.Log("count Cauldron = " + inCauldron.Count + ", count Potion = " + inPotion.Count);
-
         if (inCauldron.Count == 0 && inPotion.Count == 0)
         {
             return true;

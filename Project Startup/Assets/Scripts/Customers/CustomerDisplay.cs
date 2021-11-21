@@ -6,23 +6,23 @@ using UnityEngine.UI;
 public class CustomerDisplay : MonoBehaviour
 {
     public Customer customer;
-
     public Transform orderParent;
     public SpriteRenderer characterSprite;
-
     public SpriteRenderer potionSpriteRenderer;
-
     public GameObject potionPrefab;
     public PotionSO potionSO;
-
     public GameObject textBubble;
 
-    public bool isClicked;
+    public bool Once;
     bool onObject;
+    bool wasClicked;
+
+    Vector3 textBubbleScaleNormal;
+    Vector3 textBubbleBigPosition;
+    [SerializeField] Vector3 textBubbleSmallPosition;
 
     void Start()
     {
-
         characterSprite.sprite = customer.customerSprite;
         characterSprite.transform.position += customer.spriteOffset;
         customer.potion = potionPrefab;
@@ -32,7 +32,9 @@ public class CustomerDisplay : MonoBehaviour
         characterSprite.color = Color.gray;
         textBubble.SetActive(false);
 
-        isClicked = false;
+        Once = false;
+        textBubbleScaleNormal = textBubble.transform.localScale;
+        textBubbleBigPosition = textBubble.transform.position;
     }
 
     private void Update()
@@ -42,18 +44,35 @@ public class CustomerDisplay : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 characterSprite.color = Color.white;
+                textBubble.transform.localScale = textBubbleScaleNormal;
+                textBubble.transform.position = textBubbleBigPosition;
+                wasClicked = true;
                 textBubble.SetActive(true);
+                Once = true;
             }
         }
+        else if (wasClicked && !onObject)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                characterSprite.color = Color.gray;
+                if (Once)
+                {
+                    textBubble.transform.position -= textBubbleSmallPosition;
+                    textBubble.transform.localScale *= 0.5f;
+                    Once = false;
+                }
+            }
+        } 
         else if(!onObject)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 characterSprite.color = Color.gray;
-                textBubble.SetActive(false);
             }
 
-        }
+        } 
+        
     }
     void OnMouseEnter()
     {

@@ -10,6 +10,7 @@ public class CauldronBehaviour : MonoBehaviour
 
     public List<GameObject> ingredients;
 
+    [Header("Totaly a dictionary what are you talking about")]
     [SerializeField] List<string> potionNames;
     [SerializeField] List<PotionSO> potionList;
 
