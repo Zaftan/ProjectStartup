@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class CustomerDisplay : MonoBehaviour
 {
     public Customer customer;
+    public PotionSO potionSO;
+
     public Transform orderParent;
+
     public SpriteRenderer characterSprite;
     public SpriteRenderer potionSpriteRenderer;
+
     public GameObject potionPrefab;
-    public PotionSO potionSO;
     public GameObject textBubble;
 
     public bool Once;
@@ -20,6 +23,8 @@ public class CustomerDisplay : MonoBehaviour
     Vector3 textBubbleScaleNormal;
     Vector3 textBubbleBigPosition;
     [SerializeField] Vector3 textBubbleSmallPosition;
+
+    [SerializeField] GameObject playerData;
 
     void Start()
     {
@@ -35,6 +40,8 @@ public class CustomerDisplay : MonoBehaviour
         Once = false;
         textBubbleScaleNormal = textBubble.transform.localScale;
         textBubbleBigPosition = textBubble.transform.position;
+
+        playerData = GameObject.FindGameObjectWithTag("PlayerData");
     }
 
     private void Update()
@@ -96,6 +103,7 @@ public class CustomerDisplay : MonoBehaviour
     IEnumerator GotPotion()
     {
         characterSprite.sprite = customer.customerSpriteHappy;
+        playerData.GetComponent<PlayerData>().Sell(potionSO.cost);
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
     }

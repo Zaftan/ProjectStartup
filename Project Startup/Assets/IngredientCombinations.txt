@@ -1,0 +1,3 @@
+Red - Blue = HealthPotion
+Blue - Green = ManaPotion
+Green - Red = ShieldPotion
