@@ -296,14 +296,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customer: {fileID: 11400000, guid: 20538ba764137294f8939fd98695f37e, type: 2}
+  potionSO: {fileID: 11400000, guid: fc4ecf729fc22ec4da5cf51e56931544, type: 2}
   orderParent: {fileID: 0}
   characterSprite: {fileID: 2137191822099302943}
   potionSpriteRenderer: {fileID: 2137191822719767383}
   potionPrefab: {fileID: 8818683448814282836, guid: 09627c95e00f0ae4b82b5555740f316b, type: 3}
-  potionSO: {fileID: 11400000, guid: fc4ecf729fc22ec4da5cf51e56931544, type: 2}
   textBubble: {fileID: 2137191822278123763}
   Once: 0
   textBubbleSmallPosition: {x: 0.7, y: 1.2, z: 0}
+  playerData: {fileID: 0}
 --- !u!61 &5351557468381787810
 BoxCollider2D:
   m_ObjectHideFlags: 0

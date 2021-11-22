@@ -8,5 +8,5 @@ public class PotionSO : ScriptableObject
     public Sprite potionSprite;
     public new string name;
     public int cost;
-    public List<GameObject> ingredients;
+    public List<Ingredient> ingredients;
 }

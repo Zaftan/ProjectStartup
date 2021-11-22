@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class CauldronBehaviour : MonoBehaviour
 {
-    public GameObject red;
-    public GameObject green;
-    public GameObject blue;
+    public List<Ingredient> ingredientsSO;
 
-    public List<GameObject> ingredients;
+    public List<Ingredient> ingredientsInCauld;
 
     [Header("Totaly a dictionary what are you talking about")]
     [SerializeField] List<string> potionNames;
@@ -41,20 +39,19 @@ public class CauldronBehaviour : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.name == red.name && Input.GetMouseButton(0) == false)
+        if (collision.gameObject.GetComponent<IngredientDisplayBrew>().ingredient == ingredientsSO[0] && Input.GetMouseButton(0) == false)
         {
-            ingredients.Add(red);
-            
+            ingredientsInCauld.Add(ingredientsSO[0]);
             collision.gameObject.transform.position = settingUpPositions(redPosition);
         }
-        if (collision.gameObject.name == blue.name && Input.GetMouseButton(0) == false)
+        if (collision.gameObject.GetComponent<IngredientDisplayBrew>().ingredient == ingredientsSO[1] && Input.GetMouseButton(0) == false)
         {
-            ingredients.Add(blue);
+            ingredientsInCauld.Add(ingredientsSO[1]);
             collision.gameObject.transform.position = settingUpPositions(bluePosition);
         }
-        if (collision.gameObject.name == green.name && Input.GetMouseButton(0) == false)
+        if (collision.gameObject.GetComponent<IngredientDisplayBrew>().ingredient == ingredientsSO[2] && Input.GetMouseButton(0) == false)
         {
-            ingredients.Add(green);
+            ingredientsInCauld.Add(ingredientsSO[2]);
             collision.gameObject.transform.position = settingUpPositions(greenPosition);
         }
     }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potionSprite: {fileID: 21300000, guid: 9491ce72692f6004b807eae50a185e9c, type: 3}
   name: HealthPotion
-  cost: 0
+  cost: 5
   ingredients:
-  - {fileID: 3389561011589069382, guid: 587a444f7187cc1429fb984e3ea71906, type: 3}
-  - {fileID: 3082965583213877975, guid: 4d213df4822c8664a9c558edfa03b701, type: 3}
+  - {fileID: 11400000, guid: 3cd4e3cfee2c68d478ebdfcb7f426444, type: 2}
+  - {fileID: 11400000, guid: e61636a5e1b0c884b8afd4c52b019b5e, type: 2}

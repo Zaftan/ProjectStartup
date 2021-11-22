@@ -11,4 +11,6 @@ public class Ingredient : ScriptableObject
     public string description;
     public string usage;
     public int price;
+
+
 }

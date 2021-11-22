@@ -7,35 +7,35 @@ public class BrewButtonBehaviour : MonoBehaviour
     [SerializeField] CauldronBehaviour cauldron;
     public void OnButtonPressed()
     {
-        if (compareLists(cauldron.ingredients, cauldron.potionSO["HealthPotion"].ingredients))
+        if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["HealthPotion"].ingredients))
         {
-            cauldron.ingredients.Clear();
+            cauldron.ingredientsInCauld.Clear();
             cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["HealthPotion"];
             Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
-        else if (compareLists(cauldron.ingredients, cauldron.potionSO["ShieldPotion"].ingredients))
+        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ShieldPotion"].ingredients))
         {
-            cauldron.ingredients.Clear();
+            cauldron.ingredientsInCauld.Clear();
             cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ShieldPotion"];
             Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
-        else if (compareLists(cauldron.ingredients, cauldron.potionSO["ManaPotion"].ingredients))
+        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ManaPotion"].ingredients))
         {
-            cauldron.ingredients.Clear();
+            cauldron.ingredientsInCauld.Clear();
             cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ManaPotion"];
             Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
         else
         {
-            cauldron.ingredients.Clear();
+            cauldron.ingredientsInCauld.Clear();
             Debug.Log("No potions with these ingredients could be found.");
         }
     }
 
-    private bool compareLists(List<GameObject> tempInCauldron, List<GameObject> tempInPotion)
+    private bool compareLists(List<Ingredient> tempInCauldron, List<Ingredient> tempInPotion)
     {
-        List<GameObject> inCauldron = new List<GameObject>(tempInCauldron);
-        List<GameObject> inPotion = new List<GameObject>(tempInPotion);
+        List<Ingredient> inCauldron = new List<Ingredient>(tempInCauldron);
+        List<Ingredient> inPotion = new List<Ingredient>(tempInPotion);
 
         if (inCauldron.Count != inPotion.Count) return false;
         
@@ -44,7 +44,7 @@ public class BrewButtonBehaviour : MonoBehaviour
         {
             for (int j = 0; j < inPotion.Count; j++)
             {
-                if (inCauldron[i].name == inPotion[j].name)
+                if (inCauldron[i].ingredientName == inPotion[j].ingredientName)
                 {
                     inCauldron.Remove(inCauldron[i]);
                     inPotion.Remove(inPotion[j]);

@@ -8,7 +8,7 @@ public class Potion : MonoBehaviour
 
     public string potionName;
     public SpriteRenderer potionSprite;
-    public List<GameObject> ingredients;
+    public List<Ingredient> ingredients;
     public int sellPrice;
 
     private void Start()
