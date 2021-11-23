@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class PlayerData : MonoBehaviour
 {
     public int money;
+    public int blue, red, green = 0;
 
     [SerializeField] Text ballanceText;
 
-    // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);   
     }
 
-    // Update is called once per frame
     void Update()
     {
         ballanceText.text = money.ToString();
@@ -30,6 +29,19 @@ public class PlayerData : MonoBehaviour
         money -= moneyToRemove;
     }
 
-
-
+    public void IngredientStock(Ingredient ingredient)
+    {
+        if(ingredient.ingredientName == "Blue")
+        {
+            blue++;
+        }
+        if(ingredient.ingredientName == "Green")
+        {
+            green++;
+        }
+        if(ingredient.ingredientName == "Red")
+        {
+            red++;
+        }
+    }
 }
