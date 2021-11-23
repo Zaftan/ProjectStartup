@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ShopTest.unity
-    guid: b023e8b42b2ac5043bfc12be664c9122
-  - enabled: 1
     path: Assets/Scenes/MakingPotions.unity
     guid: 416c868795f0fb44e9866f11ae433ee5
+  - enabled: 1
+    path: Assets/Scenes/ShopTest.unity
+    guid: b023e8b42b2ac5043bfc12be664c9122
   m_configObjects: {}

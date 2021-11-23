@@ -30,6 +30,5 @@ public class PlayerData : MonoBehaviour
         money -= moneyToRemove;
     }
 
-
-
+    //Public void ingredientStock(PotionSO potion)
 }
