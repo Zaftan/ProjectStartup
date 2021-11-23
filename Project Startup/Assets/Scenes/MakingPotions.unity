@@ -1692,7 +1692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1312885589}
-  elapsedTime: 5
+  elapsedTime: 120
 --- !u!114 &940902302
 MonoBehaviour:
   m_ObjectHideFlags: 0
