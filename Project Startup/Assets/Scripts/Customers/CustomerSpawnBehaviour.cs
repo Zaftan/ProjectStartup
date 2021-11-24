@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class CustomerSpawnBehaviour : MonoBehaviour
 {
+    public static CustomerSpawnBehaviour instance;
+
     //Lists
     public List<Customer> customersOutside;
     public List<PotionSO> potions;
     public List<Transform> customerParents;
+    public List<Transform> openPosition = new List<Transform>();
     
     //GameObjects
     public GameObject potionPrefab;
     public GameObject customerPrefab;
 
     public int randomNumberForSpawn;
-
-    [SerializeField] List<Transform> openPosition = new List<Transform>();
 
     bool once;
     
@@ -31,9 +32,14 @@ public class CustomerSpawnBehaviour : MonoBehaviour
     [SerializeField] float[] percentagesZombrewAttack;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
         if (openPosition.Count < 3)
         {
             checkPositions();
@@ -94,84 +100,74 @@ public class CustomerSpawnBehaviour : MonoBehaviour
         {
             settingUpCustomer();
         }
-        StartCoroutine(spawnTimer());
+        if (TimerController.instance.elapsedTime > 0)
+        {
+            StartCoroutine(spawnTimer());
+        }
     }
 
     int potionChance()
     {
-        if (gameObject.GetComponent<EventBehaviour>().currentEvent == EventBehaviour.Events.noEvent)
+        float random = Random.Range(0f, 1f);
+        float total = 0;
+        float numberToAdd = 0;
+
+        switch (gameObject.GetComponent<EventBehaviour>().currentEvent)
         {
-            float random = Random.Range(0f, 1f);
-            float total = 0;
-            float numberToAdd = 0;
-
-            for (int i = 0; i < percentagesNoEvent.Length; i++)
-            {
-                total += percentagesNoEvent[i];
-            }
-
-        
-            for (int i = 0; i < potions.Count; i++)
-            {
-                if (percentagesNoEvent[i] / total + numberToAdd >= random)
+            case EventBehaviour.Events.noEvent:
+                for (int i = 0; i < percentagesNoEvent.Length; i++)
                 {
-                    return i;
+                    total += percentagesNoEvent[i];
                 }
-                else
+                for (int i = 0; i < potions.Count; i++)
                 {
-                    numberToAdd += percentagesNoEvent[i] / total;
+                    if (percentagesNoEvent[i] / total + numberToAdd >= random)
+                    {
+                        return i;
+                    }
+                    else
+                    {
+                        numberToAdd += percentagesNoEvent[i] / total;
+                    }
                 }
-            }
+                break;
+
+            case EventBehaviour.Events.DragonAttack:
+                for (int i = 0; i < percentagesDragonAttack.Length; i++)
+                {
+                    total += percentagesNoEvent[i];
+                }
+                for (int i = 0; i < potions.Count; i++)
+                {
+                    if (percentagesDragonAttack[i] / total + numberToAdd >= random)
+                    {
+                        return i;
+                    }
+                    else
+                    {
+                        numberToAdd += percentagesDragonAttack[i] / total;
+                    }
+                }
+                break;
+
+            case EventBehaviour.Events.zombrewInvasion:
+                for (int i = 0; i < percentagesZombrewAttack.Length; i++)
+                {
+                    total += percentagesZombrewAttack[i];
+                }
+                for (int i = 0; i < potions.Count; i++)
+                {
+                    if (percentagesZombrewAttack[i] / total + numberToAdd >= random)
+                    {
+                        return i;
+                    }
+                    else
+                    {
+                        numberToAdd += percentagesZombrewAttack[i] / total;
+                    }
+                }
+                break;
         }
-
-        if (gameObject.GetComponent<EventBehaviour>().currentEvent == EventBehaviour.Events.DragonAttack)
-        {
-            float random = Random.Range(0f, 1f);
-            float total = 0;
-            float numberToAdd = 0;
-
-            for (int i = 0; i < percentagesDragonAttack.Length; i++)
-            {
-                total += percentagesNoEvent[i];
-            }
-
-            for (int i = 0; i < potions.Count; i++)
-            {
-                if (percentagesDragonAttack[i] / total + numberToAdd >= random)
-                {
-                    return i;
-                }
-                else
-                {
-                    numberToAdd += percentagesDragonAttack[i] / total;
-                }
-            }
-        }
-
-        if (gameObject.GetComponent<EventBehaviour>().currentEvent == EventBehaviour.Events.zombrewInvasion)
-        {
-            float random = Random.Range(0f, 1f);
-            float total = 0;
-            float numberToAdd = 0;
-
-            for (int i = 0; i < percentagesZombrewAttack.Length; i++)
-            {
-                total += percentagesZombrewAttack[i];
-            }
-
-            for (int i = 0; i < potions.Count; i++)
-            {
-                if (percentagesZombrewAttack[i] / total + numberToAdd >= random)
-                {
-                    return i;
-                }
-                else
-                {
-                    numberToAdd += percentagesZombrewAttack[i] / total;
-                }
-            }
-        }
-
-        return 0;
+     return 0;
     }
 }

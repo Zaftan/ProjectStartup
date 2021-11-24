@@ -8,5 +8,6 @@ public class ContinueButton : MonoBehaviour
     public void onButtonPressed()
     {
         SceneManager.LoadScene(0);
+        PlayerData.instance.currentDay += 1;
     }
 }

@@ -34,7 +34,7 @@ public class CustomerDisplay : MonoBehaviour
 
         potionSpriteRenderer.sprite = potionSO.potionSprite;
 
-        characterSprite.color = Color.gray;
+        characterSprite.color = Color.HSVToRGB(75, 0, 72);
         textBubble.SetActive(false);
 
         Once = false;
@@ -62,7 +62,7 @@ public class CustomerDisplay : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                characterSprite.color = Color.gray;
+                characterSprite.color = Color.HSVToRGB(75, 0, 72);
                 if (Once)
                 {
                     textBubble.transform.position -= textBubbleSmallPosition;

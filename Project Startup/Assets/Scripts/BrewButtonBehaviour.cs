@@ -25,10 +25,26 @@ public class BrewButtonBehaviour : MonoBehaviour
             cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ManaPotion"];
             Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
-        else
+        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["FireResistance"].ingredients))
         {
             cauldron.ingredientsInCauld.Clear();
-            Debug.Log("No potions with these ingredients could be found.");
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["FireResistance"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+        }
+        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["Invisibility"].ingredients))
+        {
+            cauldron.ingredientsInCauld.Clear();
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["Invisibility"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+        }
+        else if(cauldron.ingredientsInCauld.Count == 0)
+        {
+            Debug.Log("No ingredients where placed in te cauldron");
+        }
+        else {
+            cauldron.ingredientsInCauld.Clear();
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["Poison"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
         }
     }
 

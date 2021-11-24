@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8818683448814282836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3.5607, y: 3.5607, z: 3.5607}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07d24362ba4f734ba7baa3b98374c73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionSO: {fileID: 11400000, guid: fc4ecf729fc22ec4da5cf51e56931544, type: 2}
+  potionSO: {fileID: 11400000, guid: 575d4ca786608174eb99445be3bc21ad, type: 2}
   potionName: 
   potionSprite: {fileID: 415748559110857336}
   ingredients: []
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1eea166f14fed4caa407085a357dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasPickedUp: 0
 --- !u!61 &3656429289995667307
 BoxCollider2D:
   m_ObjectHideFlags: 0

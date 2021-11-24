@@ -3,22 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerData : MonoBehaviour
 {
     public int money;
 
-    [SerializeField] Text ballanceText;
+    [SerializeField] GameObject ballanceText;
+
+    public static PlayerData instance;
+
+    public Dictionary<string, int> ingredientAmounts = new Dictionary<string, int>();
+
+    public int currentDay = 1;
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(this);
+        }
+        else { 
+            instance = this;
+            if (ingredientAmounts.Count == 0)
+            {
+                ingredientAmounts.Add("Fruit", 10);
+                ingredientAmounts.Add("Flower", 10);
+                ingredientAmounts.Add("Fungus", 10);
+                ingredientAmounts.Add("Powder", 10);
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);   
+        DontDestroyOnLoad(gameObject);
+        ballanceText = GameObject.FindGameObjectWithTag("MoneyText");
     }
 
     // Update is called once per frame
     void Update()
     {
-        ballanceText.text = money.ToString();
+        if(ballanceText == null)
+        {
+            ballanceText = GameObject.FindGameObjectWithTag("MoneyText");
+        }
+        if (ballanceText != null)
+        {
+            ballanceText.GetComponent<Text>().text = money.ToString();
+        }
     }
 
     public void Sell(int moneyToAdd) {
@@ -30,6 +63,14 @@ public class PlayerData : MonoBehaviour
         money -= moneyToRemove;
     }
 
+    public void UseIngredient(string ingredientName, int numberOfUsedIngredients)
+    {
+        ingredientAmounts[ingredientName] -= numberOfUsedIngredients;
+    }
 
+    public void buyIngredient(string ingredientName, int numberOfBoughtIngredients)
+    {
+        ingredientAmounts[ingredientName] += numberOfBoughtIngredients;
+    }
 
 }

@@ -16,5 +16,5 @@ MonoBehaviour:
   name: HealthPotion
   cost: 5
   ingredients:
-  - {fileID: 11400000, guid: 3cd4e3cfee2c68d478ebdfcb7f426444, type: 2}
-  - {fileID: 11400000, guid: e61636a5e1b0c884b8afd4c52b019b5e, type: 2}
+  - {fileID: 11400000, guid: 4a5e379f8edbdda47aad816f16ab1992, type: 2}
+  - {fileID: 11400000, guid: b5585a6d8dfbb814cb22f8e2d4b32da5, type: 2}
