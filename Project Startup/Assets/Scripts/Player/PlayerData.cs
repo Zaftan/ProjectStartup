@@ -7,13 +7,12 @@ using UnityEngine.UI;
 public class PlayerData : MonoBehaviour
 {
     public int money;
-    public int blue, red, green = 0;
 
-    [SerializeField] GameObject ballanceText;
-    [SerializeField] GameObject fruitText;
-    [SerializeField] GameObject flowerText;
-    [SerializeField] GameObject fungusText;
-    [SerializeField] GameObject powderText;
+    GameObject ballanceText;
+    GameObject fruitText;
+    GameObject flowerText;
+    GameObject fungusText;
+    GameObject powderText;
 
     public static PlayerData instance;
 

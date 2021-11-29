@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ManaPotion
   m_EditorClassIdentifier: 
   potionSprite: {fileID: 21300000, guid: 07433a40839206f48b5f293b98bbef18, type: 3}
+  bookSprite: {fileID: 21300000, guid: bb85534b19789084a933e1c9d846892b, type: 3}
   name: ManaPotion
-  cost: 8
+  cost: 30
   ingredients:
   - {fileID: 11400000, guid: a714c90149e3e674cb41bade22b8a8b8, type: 2}
   - {fileID: 11400000, guid: 4a5e379f8edbdda47aad816f16ab1992, type: 2}

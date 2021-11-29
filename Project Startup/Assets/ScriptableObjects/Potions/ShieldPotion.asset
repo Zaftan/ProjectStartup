@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ShieldPotion
   m_EditorClassIdentifier: 
   potionSprite: {fileID: 21300000, guid: 2c5fd52dfcf40cb4d80183a7f2cd635e, type: 3}
+  bookSprite: {fileID: 21300000, guid: 84703621c4f84d141b874f6b586e5f1f, type: 3}
   name: ShieldPotion
-  cost: 10
+  cost: 50
   ingredients:
   - {fileID: 11400000, guid: bc51c71a44adde84a870ccaf657d93eb, type: 2}
   - {fileID: 11400000, guid: 4a5e379f8edbdda47aad816f16ab1992, type: 2}

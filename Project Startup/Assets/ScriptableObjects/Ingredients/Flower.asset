@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Flower
   m_EditorClassIdentifier: 
   ingredient: {fileID: 21300000, guid: 19da49077919e9a41bf3d57dba97800b, type: 3}
+  bookSprite: {fileID: 21300000, guid: 293b97d97457ecb498ebc3b9a0626084, type: 3}
   ingredientName: Flower
   description: 
   usage: 
-  price: 5
+  price: 10

@@ -11,6 +11,8 @@ TagManager:
   - FlowerText
   - FungusText
   - PowderText
+  - EventNameText
+  - EventDescriptionText
   layers:
   - Default
   - TransparentFX

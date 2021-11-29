@@ -26,19 +26,37 @@ public class DetailScript : MonoBehaviour
         ingredientPrice.text = ingredient.price.ToString();
         ingredientImage.sprite = ingredient.ingredient;
 
+        amount = 1;
+
         amountSlider.maxValue =  Mathf.FloorToInt(PlayerData.instance.money / price);
         amountSlider.minValue = 1; 
     }
 
     private void Update()
     {
-        amount = Mathf.FloorToInt(amountSlider.value);
         currentAmount.text = amount.ToString();
+        ingredientPrice.text = (price * amount).ToString();
     }
 
     public void BuyIngredient()
     {
         PlayerData.instance.buyIngredient(ingj, amount);
         PlayerData.instance.Buy(price * amount);
+    }
+
+    public void PlusButtonBehaviour()
+    {
+        if (PlayerData.instance.money > price * amount)
+        {
+            amount++;
+        }
+    }
+
+    public void MinusButtonBehaviour()
+    {
+        if (amount > 1)
+        {
+            amount--;
+        }
     }
 }

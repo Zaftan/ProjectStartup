@@ -10,7 +10,7 @@ public class RecipeBook : MonoBehaviour
     public GameObject recipeBook;
 
     public Text potionName;
-    public Image ingredient1, ingredient2, potionImage;
+    public Image ingredient1, ingredient2, ingredient3, potionImage;
 
     public PotionSO[] potion;
 
@@ -71,13 +71,37 @@ public class RecipeBook : MonoBehaviour
     {
         Ingredient ingredient;
 
-        potionName.text = potion.name;
+        if (potion.ingredients.Count == 2)
+        {
+            potionName.text = potion.name;
 
-        ingredient = potion.ingredients[0];
-        ingredient1.sprite = ingredient.ingredient;
-        ingredient = potion.ingredients[1];
-        ingredient2.sprite = ingredient.ingredient;
+            ingredient2.gameObject.transform.localPosition = new Vector3(40.3f, -88.1f, 0.0f);
 
-        potionImage.sprite = potion.potionSprite;
+            ingredient = potion.ingredients[0];
+            ingredient1.sprite = ingredient.bookSprite;
+            ingredient = potion.ingredients[1];
+            ingredient2.sprite = ingredient.bookSprite;
+            ingredient3.gameObject.SetActive(false);
+
+            potionImage.sprite = potion.bookSprite;
+        }
+
+        if (potion.ingredients.Count == 3)
+        {
+            potionName.text = potion.name;
+
+            ingredient2.gameObject.transform.localPosition = new Vector3(26.6f, -88.1f, 0.0f);
+
+            ingredient = potion.ingredients[0];
+            ingredient1.sprite = ingredient.bookSprite;
+            ingredient = potion.ingredients[1];
+            ingredient2.sprite = ingredient.bookSprite;
+            ingredient = potion.ingredients[2];
+            ingredient3.sprite = ingredient.bookSprite;
+
+            ingredient3.gameObject.SetActive(true);
+
+            potionImage.sprite = potion.bookSprite;
+        }
     }
 }

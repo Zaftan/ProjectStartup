@@ -14,7 +14,12 @@ public class TimerController : MonoBehaviour
     
     bool timerGoing;
     private TimeSpan time;
-    public float elapsedTime;
+    float startTime;
+
+    public float gameTimeInMinutes;
+    public float currentGameTime;
+
+    float secondsFor10Minutes;
 
     private void Awake()
     {
@@ -28,17 +33,20 @@ public class TimerController : MonoBehaviour
     void Start()
     {
         //timerText.text = "5:00";
+        startTime = 540;
+        secondsFor10Minutes = ((gameTimeInMinutes * 60) / 8) / 6;
+
         BeginTimer();
     }
 
     private void Update()
     {
         dayText.text = "Day " + PlayerData.instance.currentDay;
-        if(elapsedTime >= 1020 && CustomerSpawnBehaviour.instance.openPosition.Count == 3)
+        if(currentGameTime >= gameTimeInMinutes * 60 && CustomerSpawnBehaviour.instance.openPosition.Count == 3)
         {
             SceneManager.LoadScene(1);
         }
-        else if (elapsedTime >= 1020 && CustomerSpawnBehaviour.instance.openPosition.Count != 3)
+        else if (currentGameTime >= (gameTimeInMinutes * 60) + 1  && CustomerSpawnBehaviour.instance.openPosition.Count != 3)
         {
             EndTimer();
         }
@@ -59,7 +67,7 @@ public class TimerController : MonoBehaviour
     {
         while (timerGoing)
         {
-            time = TimeSpan.FromSeconds(elapsedTime);
+            time = TimeSpan.FromSeconds(startTime);
             string timeString = time.ToString("mm':'ss");
             timerText.text = timeString;
 
@@ -69,8 +77,9 @@ public class TimerController : MonoBehaviour
 
     private IEnumerator updateTime()
     {
-        yield return new WaitForSeconds(5);
-        elapsedTime += 10;
+        yield return new WaitForSeconds(secondsFor10Minutes);
+        startTime += 10;
+        currentGameTime += secondsFor10Minutes;
         StartCoroutine(updateTime());
     }
 }

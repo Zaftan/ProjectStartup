@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Fungus
   m_EditorClassIdentifier: 
   ingredient: {fileID: 21300000, guid: 67db3ca4e6538794b8b89b6c5b4f03c3, type: 3}
+  bookSprite: {fileID: 21300000, guid: 79a109f6ce4789c4b9b2c35f358d0d24, type: 3}
   ingredientName: Fungus
   description: 
   usage: 
-  price: 5
+  price: 15

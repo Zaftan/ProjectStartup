@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Powder
   m_EditorClassIdentifier: 
   ingredient: {fileID: 21300000, guid: b760fe5ade8d1cb47827760235c602bb, type: 3}
+  bookSprite: {fileID: 21300000, guid: e25d38bf14f329c40a42e382cd773111, type: 3}
   ingredientName: Powder
   description: 
   usage: 

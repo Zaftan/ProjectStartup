@@ -27,13 +27,6 @@ public class IngredientDisplay : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerData.instance.ingredientAmounts[ingredient.ingredientName] == 0)
-        {
-            this.gameObject.SetActive(false);
-        }
-        else
-        {
-            this.gameObject.SetActive(true);
-        }
+        
     }
 }
