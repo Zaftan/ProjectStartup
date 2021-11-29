@@ -25,5 +25,15 @@ public class ItemDrag : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             transform.Translate(mousePos);
         }
+        if (!dragging)
+        {
+            StartCoroutine(resetPos());
+        }
+    }
+
+    private IEnumerator resetPos()
+    {
+        yield return new WaitForSeconds(0.05f);
+        transform.position = transform.parent.position;
     }
 }

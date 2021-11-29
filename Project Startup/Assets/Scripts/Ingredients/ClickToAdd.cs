@@ -11,6 +11,8 @@ public class ClickToAdd : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             CauldronBehaviour.instance.ingredientsInCauld.Add(GetComponent<IngredientDisplayBrew>().ingredient);
+            PlayerData.instance.UseIngredient(GetComponent<IngredientDisplayBrew>().ingredient.ingredientName, 1);
+            StartCoroutine(CauldronBehaviour.instance.playAnimation("playSplash"));
         }
     }
 }

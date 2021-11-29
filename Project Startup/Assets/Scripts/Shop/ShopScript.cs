@@ -9,10 +9,10 @@ public class ShopScript : MonoBehaviour
 
     void Start()
     {
-        foreach (Ingredient ingredient in ingredients)
+        /*foreach (Ingredient ingredient in ingredients)
         {
             prefab.GetComponent<IngredientDisplay>().ingredient = ingredient;
             Instantiate(prefab, gameObject.transform);
-        }
+        }*/
     }
 }

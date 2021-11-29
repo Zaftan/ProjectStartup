@@ -9,12 +9,24 @@ public class PlayerData : MonoBehaviour
     public int money;
 
     [SerializeField] GameObject ballanceText;
+    [SerializeField] GameObject fruitText;
+    [SerializeField] GameObject flowerText;
+    [SerializeField] GameObject fungusText;
+    [SerializeField] GameObject powderText;
 
     public static PlayerData instance;
 
     public Dictionary<string, int> ingredientAmounts = new Dictionary<string, int>();
 
     public int currentDay = 1;
+
+    //setting up cursor
+    public Texture2D cursorTextureIdle;
+    public Texture2D cursorTextureGrab;
+    public Texture2D cursorTextureHover;
+
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
 
     private void Awake()
     {
@@ -44,13 +56,53 @@ public class PlayerData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ballanceText == null)
+        SetupBalanceText();
+        SetupIngredientsText();
+
+        if (Input.GetMouseButton(0))
+        {
+            Cursor.SetCursor(cursorTextureGrab, hotSpot, cursorMode);
+        }
+        else
+        {
+            Cursor.SetCursor(cursorTextureIdle, hotSpot, cursorMode);
+        }
+    }
+
+    private void SetupBalanceText()
+    {
+        if (ballanceText == null)
         {
             ballanceText = GameObject.FindGameObjectWithTag("MoneyText");
         }
         if (ballanceText != null)
         {
             ballanceText.GetComponent<Text>().text = money.ToString();
+        }
+    }
+
+    private void SetupIngredientsText()
+    {
+        if (fruitText == null)
+        {
+            fruitText = GameObject.FindGameObjectWithTag("FruitText");
+            flowerText = GameObject.FindGameObjectWithTag("FlowerText");
+            fungusText = GameObject.FindGameObjectWithTag("FungusText");
+            powderText = GameObject.FindGameObjectWithTag("PowderText");
+        }
+        if (fruitText.GetComponent<Text>() != null)
+        {
+            fruitText.GetComponent<Text>().text = ingredientAmounts["Fruit"].ToString();
+            flowerText.GetComponent<Text>().text = ingredientAmounts["Flower"].ToString();
+            fungusText.GetComponent<Text>().text = ingredientAmounts["Fungus"].ToString();
+            powderText.GetComponent<Text>().text = ingredientAmounts["Powder"].ToString();
+        }
+        if (fruitText.GetComponent<TextMesh>() != null)
+        {
+            fruitText.GetComponent<TextMesh>().text = ingredientAmounts["Fruit"].ToString();
+            flowerText.GetComponent<TextMesh>().text = ingredientAmounts["Flower"].ToString();
+            fungusText.GetComponent<TextMesh>().text = ingredientAmounts["Fungus"].ToString();
+            powderText.GetComponent<TextMesh>().text = ingredientAmounts["Powder"].ToString();
         }
     }
 
