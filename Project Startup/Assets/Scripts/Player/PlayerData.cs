@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PlayerData : MonoBehaviour
 {
     public int money;
+    public int blue, red, green = 0;
 
     [SerializeField] GameObject ballanceText;
     [SerializeField] GameObject fruitText;
@@ -46,14 +47,12 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         ballanceText = GameObject.FindGameObjectWithTag("MoneyText");
     }
 
-    // Update is called once per frame
     void Update()
     {
         SetupBalanceText();
@@ -124,5 +123,4 @@ public class PlayerData : MonoBehaviour
     {
         ingredientAmounts[ingredientName] += numberOfBoughtIngredients;
     }
-
 }
