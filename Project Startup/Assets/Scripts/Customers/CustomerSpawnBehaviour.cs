@@ -100,7 +100,7 @@ public class CustomerSpawnBehaviour : MonoBehaviour
         {
             settingUpCustomer();
         }
-        if (TimerController.instance.elapsedTime > 0)
+        if (TimerController.instance.currentGameTime < TimerController.instance.gameTimeInMinutes * 60)
         {
             StartCoroutine(spawnTimer());
         }
@@ -112,7 +112,7 @@ public class CustomerSpawnBehaviour : MonoBehaviour
         float total = 0;
         float numberToAdd = 0;
 
-        switch (gameObject.GetComponent<EventBehaviour>().currentEvent)
+        switch (EventBehaviour.instance.currentEvent)
         {
             case EventBehaviour.Events.noEvent:
                 for (int i = 0; i < percentagesNoEvent.Length; i++)

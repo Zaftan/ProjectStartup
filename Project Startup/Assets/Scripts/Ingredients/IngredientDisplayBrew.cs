@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IngredientDisplayBrew : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class IngredientDisplayBrew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (PlayerData.instance.ingredientAmounts[ingredient.ingredientName] == 0)
         {
             this.gameObject.SetActive(false);
@@ -25,5 +27,7 @@ public class IngredientDisplayBrew : MonoBehaviour
         {
             this.gameObject.SetActive(true);
         }
+        
+
     }
 }

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FireResistance
   m_EditorClassIdentifier: 
   potionSprite: {fileID: 21300000, guid: 5339626f128b15d41ba17f82ed95fc1a, type: 3}
+  bookSprite: {fileID: 21300000, guid: 4a976c3d76941084fadd34087d17dc90, type: 3}
   name: FireResistance
-  cost: 0
+  cost: 20
   ingredients:
   - {fileID: 11400000, guid: bc51c71a44adde84a870ccaf657d93eb, type: 2}
   - {fileID: 11400000, guid: b5585a6d8dfbb814cb22f8e2d4b32da5, type: 2}

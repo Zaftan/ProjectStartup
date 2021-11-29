@@ -26,6 +26,8 @@ public class CustomerDisplay : MonoBehaviour
 
     [SerializeField] GameObject playerData;
 
+    [SerializeField] float timeBeforeAngryFloat, timeBeforeLeavingFloat;
+
     void Start()
     {
         characterSprite.sprite = customer.customerSprite;
@@ -42,6 +44,7 @@ public class CustomerDisplay : MonoBehaviour
         textBubbleBigPosition = textBubble.transform.position;
 
         playerData = GameObject.FindGameObjectWithTag("PlayerData");
+        StartCoroutine(timeBeforeAngry());
     }
 
     private void Update()
@@ -71,14 +74,6 @@ public class CustomerDisplay : MonoBehaviour
                 }
             }
         } 
-        else if(!onObject)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                characterSprite.color = Color.gray;
-            }
-
-        } 
         
     }
     void OnMouseEnter()
@@ -100,11 +95,24 @@ public class CustomerDisplay : MonoBehaviour
         }
     }
 
-    IEnumerator GotPotion()
+    private IEnumerator GotPotion()
     {
         characterSprite.sprite = customer.customerSpriteHappy;
         playerData.GetComponent<PlayerData>().Sell(potionSO.cost);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
+    }
+
+    private IEnumerator timeBeforeAngry()
+    {
+        yield return new WaitForSeconds(timeBeforeAngryFloat);
+        characterSprite.sprite = customer.customerSpriteAngry;
+        StartCoroutine(timeBeforeLeaving());
+    }
+
+    private IEnumerator timeBeforeLeaving()
+    {
+        yield return new WaitForSeconds(timeBeforeLeavingFloat);
         Destroy(gameObject);
     }
 }

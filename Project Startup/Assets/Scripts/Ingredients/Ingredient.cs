@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Ingredient : ScriptableObject
 {
     public Sprite ingredient;
+    public Sprite bookSprite;
     public string ingredientName;
     public string description;
     public string usage;
