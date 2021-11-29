@@ -12,23 +12,45 @@ public class BrewButtonBehaviour : MonoBehaviour
             cauldron.ingredientsInCauld.Clear();
             cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["HealthPotion"];
             Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+            StartCoroutine(cauldron.playAnimation("smokeAnim"));
         }
         else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ShieldPotion"].ingredients))
         {
             cauldron.ingredientsInCauld.Clear();
             cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ShieldPotion"];
             Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+            StartCoroutine(cauldron.playAnimation("smokeAnim"));
         }
         else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ManaPotion"].ingredients))
         {
             cauldron.ingredientsInCauld.Clear();
             cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ManaPotion"];
             Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+            StartCoroutine(cauldron.playAnimation("smokeAnim"));
         }
-        else
+        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["FireResistance"].ingredients))
         {
             cauldron.ingredientsInCauld.Clear();
-            Debug.Log("No potions with these ingredients could be found.");
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["FireResistance"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+            StartCoroutine(cauldron.playAnimation("smokeAnim"));
+        }
+        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["Invisibility"].ingredients))
+        {
+            cauldron.ingredientsInCauld.Clear();
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["Invisibility"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+            StartCoroutine(cauldron.playAnimation("smokeAnim"));
+        }
+        else if(cauldron.ingredientsInCauld.Count == 0)
+        {
+            Debug.Log("No ingredients where placed in te cauldron");
+        }
+        else {
+            cauldron.ingredientsInCauld.Clear();
+            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["Poison"];
+            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
+            StartCoroutine(cauldron.playAnimation("poisonAnim")); 
         }
     }
 

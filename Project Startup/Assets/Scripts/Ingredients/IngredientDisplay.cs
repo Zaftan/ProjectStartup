@@ -24,4 +24,16 @@ public class IngredientDisplay : MonoBehaviour
         DetailScript details = detailDisplay.GetComponent<DetailScript>();
         button.onClick.AddListener(delegate { details.SetDetails(ingredient); });
     }
+
+    private void Update()
+    {
+        if(PlayerData.instance.ingredientAmounts[ingredient.ingredientName] == 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+    }
 }

@@ -10,6 +10,7 @@ public class TimerController : MonoBehaviour
     public static TimerController instance;
 
     public Text timerText;
+    public Text dayText;
     
     bool timerGoing;
     private TimeSpan time;
@@ -17,27 +18,35 @@ public class TimerController : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        timerText.text = "5:00";
+        //timerText.text = "5:00";
         BeginTimer();
     }
 
     private void Update()
     {
-        if(elapsedTime <= 0)
+        dayText.text = "Day " + PlayerData.instance.currentDay;
+        if(elapsedTime >= 1020 && CustomerSpawnBehaviour.instance.openPosition.Count == 3)
         {
             SceneManager.LoadScene(1);
+        }
+        else if (elapsedTime >= 1020 && CustomerSpawnBehaviour.instance.openPosition.Count != 3)
+        {
+            EndTimer();
         }
     }
 
     public void BeginTimer() {
         timerGoing = true;
-        //elapsedTime = 300f;
+        StartCoroutine(updateTime());
         StartCoroutine(UpdateTimer());
     }
 
@@ -50,12 +59,18 @@ public class TimerController : MonoBehaviour
     {
         while (timerGoing)
         {
-            elapsedTime -= Time.deltaTime;
             time = TimeSpan.FromSeconds(elapsedTime);
-            string timeString = time.ToString("m':'ss");
+            string timeString = time.ToString("mm':'ss");
             timerText.text = timeString;
 
             yield return null;
         }
+    }
+
+    private IEnumerator updateTime()
+    {
+        yield return new WaitForSeconds(5);
+        elapsedTime += 10;
+        StartCoroutine(updateTime());
     }
 }

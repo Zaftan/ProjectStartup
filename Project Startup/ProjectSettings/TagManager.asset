@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Canvas
   - PlayerData
+  - MoneyText
+  - FruitText
+  - FlowerText
+  - FungusText
+  - PowderText
   layers:
   - Default
   - TransparentFX

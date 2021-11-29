@@ -11,17 +11,29 @@ public class CauldronBehaviour : MonoBehaviour
     [Header("Totaly a dictionary what are you talking about")]
     [SerializeField] List<string> potionNames;
     [SerializeField] List<PotionSO> potionList;
-
     public Dictionary<string, PotionSO> potionSO = new Dictionary<string, PotionSO>();
 
     public GameObject potionPrefab;
 
     public Transform potionPosition;
     
-    [SerializeField] Transform redPosition;
-    [SerializeField] Transform greenPosition;
-    [SerializeField] Transform bluePosition;
+    [SerializeField] Transform fruitPosition;
+    [SerializeField] Transform flowerPosition;
+    [SerializeField] Transform fungusPosition;
+    [SerializeField] Transform powderPosition;
 
+    public Animator animator;
+
+    public static CauldronBehaviour instance;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+
+        animator = GetComponent<Animator>();
+    }
     private void Start()
     {
         for (int i = 0; i < potionList.Count; i++)
@@ -42,17 +54,37 @@ public class CauldronBehaviour : MonoBehaviour
         if (collision.gameObject.GetComponent<IngredientDisplayBrew>().ingredient == ingredientsSO[0] && Input.GetMouseButton(0) == false)
         {
             ingredientsInCauld.Add(ingredientsSO[0]);
-            collision.gameObject.transform.position = settingUpPositions(redPosition);
+            collision.gameObject.transform.position = settingUpPositions(fruitPosition);
+            PlayerData.instance.UseIngredient(ingredientsSO[0].ingredientName, 1);
+            StartCoroutine(playAnimation("playSplash"));
         }
         if (collision.gameObject.GetComponent<IngredientDisplayBrew>().ingredient == ingredientsSO[1] && Input.GetMouseButton(0) == false)
         {
             ingredientsInCauld.Add(ingredientsSO[1]);
-            collision.gameObject.transform.position = settingUpPositions(bluePosition);
+            collision.gameObject.transform.position = settingUpPositions(flowerPosition);
+            PlayerData.instance.UseIngredient(ingredientsSO[1].ingredientName, 1);
+            StartCoroutine(playAnimation("playSplash"));
         }
         if (collision.gameObject.GetComponent<IngredientDisplayBrew>().ingredient == ingredientsSO[2] && Input.GetMouseButton(0) == false)
         {
             ingredientsInCauld.Add(ingredientsSO[2]);
-            collision.gameObject.transform.position = settingUpPositions(greenPosition);
+            collision.gameObject.transform.position = settingUpPositions(fungusPosition);
+            PlayerData.instance.UseIngredient(ingredientsSO[2].ingredientName, 1);
+            StartCoroutine(playAnimation("playSplash"));
         }
+        if (collision.gameObject.GetComponent<IngredientDisplayBrew>().ingredient == ingredientsSO[3] && Input.GetMouseButton(0) == false)
+        {
+            ingredientsInCauld.Add(ingredientsSO[3]);
+            collision.gameObject.transform.position = settingUpPositions(powderPosition);
+            PlayerData.instance.UseIngredient(ingredientsSO[3].ingredientName, 1);
+            StartCoroutine(playAnimation("playSplash"));
+        }
+    }
+
+    public IEnumerator playAnimation(string animationName)
+    {
+        animator.SetBool(animationName, true);
+        yield return new WaitForSeconds(1.2f);
+        animator.SetBool(animationName, false);
     }
 }

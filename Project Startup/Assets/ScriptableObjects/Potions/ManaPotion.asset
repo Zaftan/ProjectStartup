@@ -16,5 +16,5 @@ MonoBehaviour:
   name: ManaPotion
   cost: 8
   ingredients:
-  - {fileID: 11400000, guid: e61636a5e1b0c884b8afd4c52b019b5e, type: 2}
-  - {fileID: 11400000, guid: bb7a262845753da458a509f6da2ddd5f, type: 2}
+  - {fileID: 11400000, guid: a714c90149e3e674cb41bade22b8a8b8, type: 2}
+  - {fileID: 11400000, guid: 4a5e379f8edbdda47aad816f16ab1992, type: 2}
