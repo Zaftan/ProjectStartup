@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Canvas
+  - PlayerData
+  - MoneyText
+  - FruitText
+  - FlowerText
+  - FungusText
+  - PowderText
+  - EventNameText
+  - EventDescriptionText
   layers:
   - Default
   - TransparentFX
