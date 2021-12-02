@@ -5,53 +5,89 @@ using UnityEngine;
 public class BrewButtonBehaviour : MonoBehaviour
 {
     [SerializeField] CauldronBehaviour cauldron;
+
+    public List<Transform> potionParents;
+    public List<Transform> openPosition = new List<Transform>();
+
+    private void Update()
+    {
+        if (openPosition.Count < 3)
+        {
+            checkPositions();
+        }
+    }
+
+    void checkPositions()
+    {
+        if (potionParents[0].childCount < 1 && !openPosition.Contains(potionParents[0]))
+        {
+            openPosition.Add(potionParents[0]);
+        }
+        if (potionParents[1].childCount < 1 && !openPosition.Contains(potionParents[1]))
+        {
+            openPosition.Add(potionParents[1]);
+        }
+        if (potionParents[2].childCount < 1 && !openPosition.Contains(potionParents[2]))
+        {
+            openPosition.Add(potionParents[2]);
+        }
+    }
+
     public void OnButtonPressed()
     {
-        if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["HealthPotion"].ingredients))
+        if (openPosition.Count > 0)
         {
-            cauldron.ingredientsInCauld.Clear();
-            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["HealthPotion"];
-            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
-            StartCoroutine(cauldron.playAnimation("smokeAnim"));
+            if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["HealthPotion"].ingredients))
+            {
+                PlacePotion(cauldron.potionSO["HealthPotion"]);
+            }
+            else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ShieldPotion"].ingredients))
+            {
+                PlacePotion(cauldron.potionSO["ShieldPotion"]);
+            }
+            else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ManaPotion"].ingredients))
+            {
+                PlacePotion(cauldron.potionSO["ManaPotion"]);
+            }
+            else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["FireResistance"].ingredients))
+            {
+                PlacePotion(cauldron.potionSO["FireResistance"]);
+            }
+            else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["Invisibility"].ingredients))
+            {
+                PlacePotion(cauldron.potionSO["Invisibility"]);
+            }
+            else if (cauldron.ingredientsInCauld.Count == 0)
+            {
+                Debug.Log("No ingredients where placed in te cauldron");
+            }
+            else
+            {
+                PlacePoison();
+            }
         }
-        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ShieldPotion"].ingredients))
+        else
         {
-            cauldron.ingredientsInCauld.Clear();
-            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ShieldPotion"];
-            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
-            StartCoroutine(cauldron.playAnimation("smokeAnim"));
+            Debug.Log("You can not make any potions. The counter is full");
         }
-        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["ManaPotion"].ingredients))
-        {
-            cauldron.ingredientsInCauld.Clear();
-            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["ManaPotion"];
-            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
-            StartCoroutine(cauldron.playAnimation("smokeAnim"));
-        }
-        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["FireResistance"].ingredients))
-        {
-            cauldron.ingredientsInCauld.Clear();
-            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["FireResistance"];
-            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
-            StartCoroutine(cauldron.playAnimation("smokeAnim"));
-        }
-        else if (compareLists(cauldron.ingredientsInCauld, cauldron.potionSO["Invisibility"].ingredients))
-        {
-            cauldron.ingredientsInCauld.Clear();
-            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["Invisibility"];
-            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
-            StartCoroutine(cauldron.playAnimation("smokeAnim"));
-        }
-        else if(cauldron.ingredientsInCauld.Count == 0)
-        {
-            Debug.Log("No ingredients where placed in te cauldron");
-        }
-        else {
-            cauldron.ingredientsInCauld.Clear();
-            cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["Poison"];
-            Instantiate(cauldron.potionPrefab, cauldron.potionPosition);
-            StartCoroutine(cauldron.playAnimation("poisonAnim")); 
-        }
+    }
+
+    private void PlacePoison()
+    {
+        cauldron.ingredientsInCauld.Clear();
+        cauldron.potionPrefab.GetComponent<Potion>().potionSO = cauldron.potionSO["Poison"];
+        Instantiate(cauldron.potionPrefab, openPosition[0]);
+        openPosition.Remove(openPosition[0]);
+        StartCoroutine(cauldron.playAnimation("poisonAnim"));
+    }
+
+    private void PlacePotion(PotionSO potion)
+    {
+        cauldron.ingredientsInCauld.Clear();
+        cauldron.potionPrefab.GetComponent<Potion>().potionSO = potion;
+        Instantiate(cauldron.potionPrefab, openPosition[0]);
+        openPosition.Remove(openPosition[0]);
+        StartCoroutine(cauldron.playAnimation("smokeAnim"));
     }
 
     private bool compareLists(List<Ingredient> tempInCauldron, List<Ingredient> tempInPotion)

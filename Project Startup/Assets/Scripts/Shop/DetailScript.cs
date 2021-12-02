@@ -40,8 +40,11 @@ public class DetailScript : MonoBehaviour
 
     public void BuyIngredient()
     {
-        PlayerData.instance.buyIngredient(ingj, amount);
-        PlayerData.instance.Buy(price * amount);
+        if (PlayerData.instance.money >= price * amount)
+        {
+            PlayerData.instance.buyIngredient(ingj, amount);
+            PlayerData.instance.Buy(price * amount);
+        }
     }
 
     public void PlusButtonBehaviour()

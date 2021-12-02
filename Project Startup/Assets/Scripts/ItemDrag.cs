@@ -33,7 +33,8 @@ public class ItemDrag : MonoBehaviour
 
     private IEnumerator resetPos()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
         transform.position = transform.parent.position;
+
     }
 }
