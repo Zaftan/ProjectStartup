@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   percentagesForEventsTop:
-  - 70
-  - 85
+  - 50
+  - 80
   - 100
   currentEvent: 0
   currentEventText: {fileID: 0}
+  currentEventDescriptionText: {fileID: 0}
